@@ -1,15 +1,15 @@
-import exif_reader
-import file_converter
 import os
 from file_sorter import sorter
 
-
 if __name__ == "__main__":
-    source_dir = "C:\\Users\\jamie\\Desktop\\PhotoSorter\\photos\\"
-    dest_dir = "C:\\Users\\jamie\\Desktop\\PhotoSorter\\sorted\\"
-    
+    with open("config.txt", "r") as f:
+        source_dir = f.readline().split("=", 1)[1].strip()
+        dest_dir = f.readline().split("=", 1)[1].strip()
+
+    print(f"Copying files from \nSOURCE - {source_dir} to \nDESTINATION - {dest_dir}\n\nLOG:")
+
     for root, dirs, files in os.walk(source_dir):
         for filename in files:
             file_path = os.path.join(root, filename)
             if os.path.isfile(file_path):
-                sorter.copy_file(source_dir, dest_dir, file_path)
+                sorter.copy_file(file_path, dest_dir)

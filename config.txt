@@ -1,0 +1,2 @@
+source_path = C:\\Users\\jamie\\Desktop\\PhotoSorter\\photos\\
+dest_path = C:\\Users\\jamie\\Desktop\\PhotoSorter\\sorted\\
