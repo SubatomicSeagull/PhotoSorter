@@ -1,1 +1,1 @@
-from . import convert_heic_to_jpeg as Convert
+from .converter import convert_heic_to_jpeg as Convert

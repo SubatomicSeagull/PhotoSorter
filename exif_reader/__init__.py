@@ -1,1 +1,1 @@
-from .exif_reader import parse_type as Read
+from .reader import parse_type as Read
