@@ -26,19 +26,18 @@ def copy_file(source, dest, photopath):
     if os.path.splitext(photopath)[1].lower() in ['.heic', '.heif']:
         # convert heic to jpeg in the same folder
         file_converter.HEIC_to_JPEG(source, photopath)
-        
         # update photopath to new jpeg file
         photopath = os.path.splitext(photopath)[0] + '.jpg'
         
     elif os.path.splitext(photopath)[1].lower() in ['.mov']:
         # convert mov to mp4 in the same folder
-        file_converter.MOV_to_MP4(source, photopath)
+        file_converter.to_MP4(source, photopath, date)
         # update photopath to new mp4 file
         photopath = os.path.splitext(photopath)[0] + '.mp4'
     
     elif os.path.splitext(photopath)[1].lower() in ['.avi']:
         # convert avi to mp4 in the same folder
-        file_converter.AVI_to_MP4(source, photopath)
+        file_converter.to_MP4(source, photopath, date)
         # update photopath to new mp4 file
         photopath = os.path.splitext(photopath)[0] + '.mp4'
     
