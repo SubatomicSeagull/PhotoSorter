@@ -63,6 +63,7 @@ def parse_type(photopath):
     match imagetype:
             
         case "mp4" | "avi" | "mkv" | "mov" | "vob" | "webm":
+            date = read_video_metadata(photopath)
             print (f"Video: {photopath}: Type: {imagetype}, Date: {date}")
             return read_video_metadata(photopath)
             
