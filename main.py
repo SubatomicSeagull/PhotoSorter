@@ -15,6 +15,8 @@ if __name__ == "__main__":
             file_path = os.path.join(root, filename)
             if os.path.isfile(file_path):
                 sorter.copy_file(file_path, dest_dir)
+                input("Press Enter to continue")
+                
 
     elapsed = time.time() - start_time
     print(f"\nCompleted in {elapsed:.2f} seconds.")

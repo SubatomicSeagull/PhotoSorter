@@ -6,12 +6,12 @@ import shutil
 
 def copy_file(source, dest):
     date = exif_reader.Read(source)
-    
+
     if date is None:
         print(f"\033[91m{source} is probably not an image, skipping\033[0m")
         return
-
-    date = datetime.strptime(date, "%Y:%m:%d %H:%M:%S")
+    
+    #date = datetime.strptime(date, "%Y:%m:%d %H:%M:%S")
 
     year = date.strftime("%Y")
     month = date.strftime("%m") 
@@ -25,7 +25,7 @@ def copy_file(source, dest):
         file_converter.HEIC_to_JPEG(source, dest_path)
 
         
-    elif os.path.splitext(source)[1].lower() in [".mov", ".avi", ".mkv"]:
+    elif os.path.splitext(source)[1].lower() in [".mov", ".avi", ".mkv", ".3gp"]:
 
         dest_path = (f"{dest}\\{year}\\{month}-{month_name}\\{os.path.splitext(os.path.basename(source))[0] + ".mp4"}")
         if not os.path.exists(os.path.dirname(dest_path)):

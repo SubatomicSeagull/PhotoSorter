@@ -20,8 +20,6 @@ def convert_heic_to_jpeg(source, dest):
 # convert MOV and avi to MP4
 def convert_to_mp4(source, dest, modified_date):
     filename = os.path.basename(source)
-    dirpath = os.path.dirname(source)
-    destination_path = os.path.join(dirpath, os.path.splitext(filename)[0] + '.mp4')
     
     command = [
         "ffmpeg",
@@ -32,7 +30,7 @@ def convert_to_mp4(source, dest, modified_date):
         "-c:v", "libx264",
         "-c:a", "aac",
         "-y",
-        destination_path
+        dest
     ]
     print(f"\033[95mConverting {filename} to MP4\033[0m")
     subprocess.run(command, check=True)

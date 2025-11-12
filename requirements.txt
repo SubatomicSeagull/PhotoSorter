@@ -2,3 +2,4 @@ pillow
 pillow-heif
 piexif
 pymediainfo
+exifread
