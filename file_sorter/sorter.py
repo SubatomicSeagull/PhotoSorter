@@ -25,7 +25,7 @@ def copy_file(source, dest):
         file_converter.HEIC_to_JPEG(source, dest_path)
 
         
-    elif os.path.splitext(source)[1].lower() in [".mov", ".avi", ".mkv", ".3gp"]:
+    elif os.path.splitext(source)[1].lower() in [".mov", ".avi", ".mkv", ".3gp", ".vob"]:
 
         dest_path = (f"{dest}\\{year}\\{month}-{month_name}\\{os.path.splitext(os.path.basename(source))[0] + ".mp4"}")
         if not os.path.exists(os.path.dirname(dest_path)):
@@ -41,3 +41,4 @@ def copy_file(source, dest):
         shutil.copy2(source, dest_path)
         
     print(f"Copied {source} to {dest_path}")
+    

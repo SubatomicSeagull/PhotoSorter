@@ -8,20 +8,8 @@ import exifread
 
 register_heif_opener()
 
-def get_earliest_date1(dates):
-    parsed = []
-    for d in dates:
-        if not d:
-            continue
-        try:
-            dt = datetime.strptime(d, "%Y:%m:%d %H:%M:%S")
-            parsed.append((dt, d))
-        except Exception:
-            continue
-    parsed.sort(key=lambda x: x[0])
-    return parsed[0][1]
-
 def get_earliest_date(dates):
+    
     formats = [
         "%Y:%m:%d %H:%M:%S",
         "%Y-%m-%d %H:%M:%S",
@@ -35,12 +23,12 @@ def get_earliest_date(dates):
             continue
 
         for line in formats:
-            # skip dates that are probably invalid i.e 01/01/1970
-
             try:
-                if datetime.strptime(date, line).month != 1 and datetime.strptime(date, line).day != 1 and datetime.strptime(date, line).hour != 0 and datetime.strptime(date, line).minute != 0 and datetime.strptime(date, line).second != 0:
+                # skip dates that are probably invalid i.e 01/01/1970 00:00:00
+                if datetime.strptime(date,line).year >= 2000:
                     parsed.append((datetime.strptime(date, line)))
                     break
+                continue
             except Exception:
                 continue
 

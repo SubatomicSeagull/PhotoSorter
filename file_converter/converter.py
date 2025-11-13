@@ -23,7 +23,7 @@ def convert_to_mp4(source, dest, modified_date):
     
     command = [
         "ffmpeg",
-        "-hide_banner", "-loglevel", "error", "-nostats",
+        #"-hide_banner", "-loglevel", "error", "-nostats",
         "-fflags", "+genpts",
         "-i", source,
         "-metadata", f"creation_time={modified_date}",

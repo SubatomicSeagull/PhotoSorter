@@ -1,2 +1,2 @@
-source_path = C:\\Users\\jamie\\Desktop\\PhotoSorter\\photos\\
-dest_path = C:\\Users\\jamie\\Desktop\\PhotoSorter\\sorted\\
+source_path = E:\\Photos\\32004\\
+dest_path = E:\\Photos\\32004\\sorted\\
