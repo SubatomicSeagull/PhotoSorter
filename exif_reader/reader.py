@@ -49,15 +49,10 @@ def read_simple_image_metadata(photopath):
     with open(photopath, 'rb') as f:
         tags = exifread.process_file(f)
         
-    print("======METADATA FOR IMAGE========")
     for tag in tags:
-        print(f"{tag}: {tags[tag]}")
         if tag in ["EXIF DateTimeOriginal", "Image DateTime"]:
             dates.append(str(tags[tag]))
-    print("================================")
-    
-    print(f"======================\nDATES FOUND: {dates}\n======================")
-    print(f"USING DATE: {get_earliest_date(dates)}")
+            
     return get_earliest_date(dates)
 
 
@@ -67,18 +62,12 @@ def read_video_metadata(photopath):
     dates = get_file_creation_dates(photopath)
     data = {"file_last_modification_date", "encoded_date"}
 
-
-    print("======METADATA FOR VIDEO========")
     for track in mediainfo.tracks:
         info = track.to_data()
         for key, value in info.items():
             if key in data and value:
                 dates.append(value)
-                print(f"{key}: {value}")
-    print("================================")
-    print(f"======================\nDATES FOUND: {dates}\n======================")
-    print(f"USING DATE: {get_earliest_date(dates)}")
-    
+                
     return get_earliest_date(dates)
 
 def parse_type(photopath):
