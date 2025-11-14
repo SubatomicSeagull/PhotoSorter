@@ -1,8 +1,8 @@
 import file_converter
 import exif_reader
 import os 
-from datetime import datetime
 import shutil
+import time
 
 def copy_file(source, dest):
     date = exif_reader.Read(source)
@@ -37,8 +37,20 @@ def copy_file(source, dest):
         
         if not os.path.exists(os.path.dirname(dest_path)):
             os.makedirs(os.path.dirname(dest_path))
-            
-        shutil.copy2(source, dest_path)
+
+        for attempt in range(5):
+            try:
+                shutil.copy2(source, dest_path)
+            except OSError as e:
+                print(f"\033[91mError copying {source} to {dest_path}: {e}\033[0m")
+                if e.winerror == 32 or e.winerror == 1224:  #  File locked by another process
+                    print(f"Retrying in 1 second... (Attempt {attempt + 1}/5)")
+                    time.sleep(1)
+                    continue
+                else:
+                    input(f"\033[91mFailed to copy {source} after 5 attempts.\n Press Enter to continue...\033[0m")
+                    
+                    return
         
     print(f"Copied {source} to {dest_path}")
     
