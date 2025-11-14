@@ -7,7 +7,7 @@ import shutil
 
 def convert_heic_to_jpeg(source, dest):
     filename = os.path.basename(source)
-    dirpath = os.path.dirname(source)
+    dirpath = os.path.dirname(dest)
     print (f"\033[95mConverting {filename} to JPEG\033[0m")
     
     register_heif_opener()

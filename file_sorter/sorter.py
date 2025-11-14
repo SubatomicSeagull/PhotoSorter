@@ -19,7 +19,7 @@ def copy_file(source, dest):
     
     if os.path.splitext(source)[1].lower() in [".heic", ".heif"]:
 
-        dest_path = (f"{dest}\\{year}\\{month}-{month_name}\\{os.path.splitext(os.path.basename(source))[0] + ".mp4"}")
+        dest_path = (f"{dest}\\{year}\\{month}-{month_name}\\{os.path.splitext(os.path.basename(source))[0] + ".jpg"}")
         if not os.path.exists(os.path.dirname(dest_path)):
             os.makedirs(os.path.dirname(dest_path))
         file_converter.HEIC_to_JPEG(source, dest_path)
