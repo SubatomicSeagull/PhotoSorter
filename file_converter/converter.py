@@ -16,7 +16,15 @@ def convert_heic_to_jpeg(source, dest):
     
     destination_path = os.path.join(dirpath, os.path.splitext(filename)[0] + '.jpg')
     
-    photo.save(destination_path, "JPEG", quality=95, exif=exif, optimize=True)
+    
+    try:
+        photo.save(destination_path, "JPEG", quality=95, exif=exif, optimize=True)
+    except Exception as e:
+        print(f"\033[91mError converting {filename} to JPG: {e}\n Moved to errors folder\033[0m")
+        dest = os.path.join(os.path.dirname(dest), "errors", filename)
+        if not os.path.exists(os.path.dirname(dest)):
+            os.makedirs(os.path.dirname(dest))
+        shutil.copy2(source, dest)
     
 # convert MOV and avi to MP4
 def convert_to_mp4(source, dest, modified_date):
