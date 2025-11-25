@@ -74,7 +74,8 @@ def update_mp4_dates(file_path, new_date):
         "-loglevel", "error",
         "-y",
         "-i", file_path,
-        "-codec", "copy",
+        "-c:v", "copy",
+        "-c:a", "aac", "-b:a", "64k",
         "-metadata", f"creation_time={iso_date}",
         "-metadata", f"modify_time={iso_date}",
         temp_file
@@ -88,9 +89,16 @@ def update_mp4_dates(file_path, new_date):
     print(f"✔ Updated MP4 metadata dates for {os.path.basename(file_path)} to {new_date}")
 
 
+fldrdate = "2012-02-09"
 
-filepath = ""
-date = ""
+dirpath = f"E:\\Photos\\photos\\{fldrdate}"
+date = f"{fldrdate} 19:27:01"
 
-update_mp4_dates(filepath, date)
-read_video_metadata(filepath)
+#read_video_metadata(filepath)
+
+
+for root, dirs, files in os.walk(dirpath):
+    for filename in files:
+        file_path = os.path.join(root, filename)
+        if os.path.isfile(file_path):
+            update_mp4_dates(file_path, date)
